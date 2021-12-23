@@ -1,0 +1,16 @@
+[
+{
+  "modid": "sleepingbag",
+  "name": "Sleeping Bag",
+  "description": "Sleep should always be at hand",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["npo6ka"],
+  "credits": "npo6ka, mixac1",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
