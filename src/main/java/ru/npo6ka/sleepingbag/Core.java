@@ -5,7 +5,7 @@ import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
 import org.apache.logging.log4j.*;
 
-@Mod(modid = "sleepingbag", version = "0.1.1")
+@Mod(modid = "sleepingbag", version = Core.VERSION)
 public class Core
 {
     public static final String MODID = "sleepingbag";
