@@ -140,9 +140,6 @@ processResources
 task devJar(type: Jar) {
     from sourceSets.main.output
     getArchiveClassifier().set("dev")
-    manifest {
-        attributes "FMLCorePlugin": "com.dreammaster.coremod.DepLoader","FMLCorePluginContainsFMLMod": "true"
-    }
 }
 
 task sourceJar(type: Jar) {
