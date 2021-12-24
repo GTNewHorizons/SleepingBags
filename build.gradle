@@ -167,8 +167,3 @@ task signJar(dependsOn: "reobf"){
     }
 }
 
-jar {
-    manifest {
-        attributes "FMLCorePlugin": "com.dreammaster.coremod.DreamCoreMod","FMLCorePluginContainsFMLMod": "true"
-    }
-}
