@@ -5,10 +5,10 @@ import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
 import org.apache.logging.log4j.*;
 
-@Mod(modid = "sleepingbag", version = Core.VERSION)
+@Mod(modid = Core.MODID, version = Core.VERSION)
 public class Core
 {
-    public static final String MODID = "sleepingbag";
+    public static final String MODID = "GRADLETOKEN_MODID";
     public static final String VERSION = "GRADLETOKEN_VERSION";
     public static final Logger LOGGER;
     @Mod.Instance
@@ -32,6 +32,6 @@ public class Core
     }
     
     static {
-        LOGGER = LogManager.getLogger("sleepingbag");
+        LOGGER = LogManager.getLogger(Core.MODID);
     }
 }

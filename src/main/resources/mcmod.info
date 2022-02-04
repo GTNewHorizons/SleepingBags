@@ -1,11 +1,11 @@
 [
 {
-  "modid": "sleepingbag",
-  "name": "Sleeping Bag",
+  "modid": "${modId}",
+  "name": "${modName}",
   "description": "Sleep should always be at hand",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
+  "version": "${modVersion}",
+  "mcversion": "${minecraftVersion}",
+  "url": "https://github.com/GTNewHorizons/SleepingBags",
   "updateUrl": "",
   "authorList": ["npo6ka"],
   "credits": "npo6ka, mixac1",
