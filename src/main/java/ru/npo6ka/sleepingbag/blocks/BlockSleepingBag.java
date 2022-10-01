@@ -1,48 +1,60 @@
 package ru.npo6ka.sleepingbag.blocks;
 
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.entity.player.*;
 import cpw.mods.fml.common.*;
-import net.minecraft.world.*;
-import net.minecraft.world.biome.*;
+import cpw.mods.fml.relauncher.*;
 import java.util.*;
-import ru.npo6ka.sleepingbag.*;
-import net.minecraft.util.*;
+import net.minecraft.block.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.block.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraft.world.biome.*;
+import ru.npo6ka.sleepingbag.*;
 
-public class BlockSleepingBag extends BlockBed
-{
+public class BlockSleepingBag extends BlockBed {
     @SideOnly(Side.CLIENT)
     private IIcon[] field_149980_b;
+
     @SideOnly(Side.CLIENT)
     private IIcon[] field_149982_M;
+
     @SideOnly(Side.CLIENT)
     private IIcon[] field_149983_N;
+
     private int renderType;
-    
+
     public BlockSleepingBag() {
         this.renderType = 0;
     }
-    
+
     public int getRenderType() {
         return this.renderType;
     }
-    
+
     public void setRenderId(final int type) {
         this.renderType = type;
     }
-    
-    public ChunkCoordinates getBedSpawnPosition(final IBlockAccess world, final int x, final int y, final int z, final EntityPlayer player) {
+
+    public ChunkCoordinates getBedSpawnPosition(
+            final IBlockAccess world, final int x, final int y, final int z, final EntityPlayer player) {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER && world instanceof World) {
             return ExtendedPlayer.get(player).getLastCoord();
         }
         return null;
     }
-    
-    public boolean onBlockActivated(final World world, int x, final int y, int z, final EntityPlayer player, final int p_149727_6_, final float p_149727_7_, final float p_149727_8_, final float p_149727_9_) {
+
+    public boolean onBlockActivated(
+            final World world,
+            int x,
+            final int y,
+            int z,
+            final EntityPlayer player,
+            final int p_149727_6_,
+            final float p_149727_7_,
+            final float p_149727_8_,
+            final float p_149727_9_) {
         if (world.isRemote) {
             return true;
         }
@@ -70,7 +82,8 @@ public class BlockSleepingBag extends BlockBed
                 d3 = (d3 + y + 0.5) / 2.0;
                 d4 = (d4 + z + 0.5) / 2.0;
             }
-            world.newExplosion((Entity)null, (double)(x + 0.5f), (double)(y + 0.5f), (double)(z + 0.5f), 5.0f, true, true);
+            world.newExplosion(
+                    (Entity) null, (double) (x + 0.5f), (double) (y + 0.5f), (double) (z + 0.5f), 5.0f, true, true);
             return true;
         }
         if (func_149976_c(i1)) {
@@ -86,7 +99,8 @@ public class BlockSleepingBag extends BlockBed
                 }
             }
             if (entityplayer1 != null) {
-                player.addChatComponentMessage((IChatComponent)new ChatComponentTranslation("tile.bed.occupied", new Object[0]));
+                player.addChatComponentMessage(
+                        (IChatComponent) new ChatComponentTranslation("tile.bed.occupied", new Object[0]));
                 return true;
             }
             func_149979_a(world, x, y, z, false);
@@ -97,23 +111,24 @@ public class BlockSleepingBag extends BlockBed
             return true;
         }
         if (enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW) {
-            player.addChatComponentMessage((IChatComponent)new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
-        }
-        else if (enumstatus == EntityPlayer.EnumStatus.NOT_SAFE) {
-            player.addChatComponentMessage((IChatComponent)new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
+            player.addChatComponentMessage(
+                    (IChatComponent) new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
+        } else if (enumstatus == EntityPlayer.EnumStatus.NOT_SAFE) {
+            player.addChatComponentMessage(
+                    (IChatComponent) new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
         }
         return true;
     }
-    
+
     public Item getItemDropped(final int p_149650_1_, final Random p_149650_2_, final int p_149650_3_) {
         return isBlockHeadOfBed(p_149650_1_) ? Item.getItemById(0) : ItemsRegister.sleepingBagItem;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public Item getItem(final World p_149694_1_, final int p_149694_2_, final int p_149694_3_, final int p_149694_4_) {
         return ItemsRegister.sleepingBagItem;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int p_149691_1_, final int p_149691_2_) {
         if (p_149691_1_ == 0) {
@@ -122,29 +137,48 @@ public class BlockSleepingBag extends BlockBed
         final int k = getDirection(p_149691_2_);
         final int l = Direction.bedDirection[k][p_149691_1_];
         final int i1 = isBlockHeadOfBed(p_149691_2_) ? 1 : 0;
-        return ((i1 != 1 || l != 2) && (i1 != 0 || l != 3)) ? ((l != 5 && l != 4) ? this.field_149983_N[i1] : this.field_149982_M[i1]) : this.field_149980_b[i1];
+        return ((i1 != 1 || l != 2) && (i1 != 0 || l != 3))
+                ? ((l != 5 && l != 4) ? this.field_149983_N[i1] : this.field_149982_M[i1])
+                : this.field_149980_b[i1];
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(final IIconRegister p_149651_1_) {
-        this.field_149983_N = new IIcon[] { p_149651_1_.registerIcon(this.getTextureName() + "_feet_top"), p_149651_1_.registerIcon(this.getTextureName() + "_head_top") };
-        this.field_149980_b = new IIcon[] { p_149651_1_.registerIcon(this.getTextureName() + "_feet_end"), p_149651_1_.registerIcon(this.getTextureName() + "_head_end") };
-        this.field_149982_M = new IIcon[] { p_149651_1_.registerIcon(this.getTextureName() + "_feet_side"), p_149651_1_.registerIcon(this.getTextureName() + "_head_side") };
+        this.field_149983_N = new IIcon[] {
+            p_149651_1_.registerIcon(this.getTextureName() + "_feet_top"),
+            p_149651_1_.registerIcon(this.getTextureName() + "_head_top")
+        };
+        this.field_149980_b = new IIcon[] {
+            p_149651_1_.registerIcon(this.getTextureName() + "_feet_end"),
+            p_149651_1_.registerIcon(this.getTextureName() + "_head_end")
+        };
+        this.field_149982_M = new IIcon[] {
+            p_149651_1_.registerIcon(this.getTextureName() + "_feet_side"),
+            p_149651_1_.registerIcon(this.getTextureName() + "_head_side")
+        };
     }
-    
-    public void setBlockBoundsBasedOnState(final IBlockAccess p_149719_1_, final int p_149719_2_, final int p_149719_3_, final int p_149719_4_) {
+
+    public void setBlockBoundsBasedOnState(
+            final IBlockAccess p_149719_1_, final int p_149719_2_, final int p_149719_3_, final int p_149719_4_) {
         this.func_149978_e();
     }
-    
+
     private void func_149978_e() {
         this.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 0.25f, 1.0f);
     }
-    
-    public boolean isBed(final IBlockAccess world, final int x, final int y, final int z, final EntityLivingBase player) {
+
+    public boolean isBed(
+            final IBlockAccess world, final int x, final int y, final int z, final EntityLivingBase player) {
         return this == ItemsRegister.sleepingBagBlock;
     }
-    
-    public void setBedOccupied(final IBlockAccess world, final int x, final int y, final int z, final EntityPlayer player, final boolean occupied) {
+
+    public void setBedOccupied(
+            final IBlockAccess world,
+            final int x,
+            final int y,
+            final int z,
+            final EntityPlayer player,
+            final boolean occupied) {
         final Block bad = world.getBlock(x, y, z);
         if (bad == ItemsRegister.sleepingBagBlock) {
             ExtendedPlayer.get(player).setWakeUpFlag(true);
@@ -178,17 +212,16 @@ public class BlockSleepingBag extends BlockBed
                     for (i = 9; i < 35 && player.inventory.mainInventory[i] != null; ++i) {}
                 }
                 if (player.capabilities.isCreativeMode && world instanceof World) {
-                    ((World)world).setBlockToAir(xOffset, y, zOffset);
-                    ((World)world).setBlockToAir(x, y, z);
+                    ((World) world).setBlockToAir(xOffset, y, zOffset);
+                    ((World) world).setBlockToAir(x, y, z);
                     return;
                 }
                 if (player.inventory.mainInventory[i] == null && world instanceof World) {
-                    ((World)world).setBlockToAir(xOffset, y, zOffset);
-                    ((World)world).setBlockToAir(x, y, z);
+                    ((World) world).setBlockToAir(xOffset, y, zOffset);
+                    ((World) world).setBlockToAir(x, y, z);
                     player.inventory.mainInventory[i] = new ItemStack(ItemsRegister.sleepingBagItem);
-                }
-                else {
-                    bad.removedByPlayer((World)world, player, x, y, z, false);
+                } else {
+                    bad.removedByPlayer((World) world, player, x, y, z, false);
                 }
             }
         }
