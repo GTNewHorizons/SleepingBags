@@ -1,3 +1,4 @@
 package ru.npo6ka.sleepingbag;
 
-public final class NBTUtil {}
+public final class NBTUtil {
+}

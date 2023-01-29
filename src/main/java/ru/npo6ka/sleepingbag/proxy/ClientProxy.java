@@ -1,9 +1,10 @@
 package ru.npo6ka.sleepingbag.proxy;
 
-import cpw.mods.fml.client.registry.*;
 import ru.npo6ka.sleepingbag.*;
+import cpw.mods.fml.client.registry.*;
 
 public class ClientProxy extends CommonProxy {
+
     @Override
     public void preInit() {
         super.preInit();

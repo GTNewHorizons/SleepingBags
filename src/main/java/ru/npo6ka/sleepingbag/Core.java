@@ -1,12 +1,14 @@
 package ru.npo6ka.sleepingbag;
 
+import org.apache.logging.log4j.*;
+
+import ru.npo6ka.sleepingbag.proxy.*;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
-import org.apache.logging.log4j.*;
-import ru.npo6ka.sleepingbag.proxy.*;
 
 @Mod(modid = Core.MODID, version = Core.VERSION)
 public class Core {
+
     public static final String MODID = "GRADLETOKEN_MODID";
     public static final String VERSION = "GRADLETOKEN_VERSION";
     public static final Logger LOGGER;

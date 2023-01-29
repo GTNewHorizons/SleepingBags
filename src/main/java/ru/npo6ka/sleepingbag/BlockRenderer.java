@@ -1,6 +1,5 @@
 package ru.npo6ka.sleepingbag;
 
-import cpw.mods.fml.client.registry.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
@@ -9,7 +8,10 @@ import net.minecraft.client.renderer.texture.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
+import cpw.mods.fml.client.registry.*;
+
 public class BlockRenderer implements ISimpleBlockRenderingHandler {
+
     private final int renderId;
     private final Tessellator tes;
     private final double renderMinX = 0.0;
@@ -27,21 +29,15 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler {
         this.renderId = RenderingRegistry.getNextAvailableRenderId();
     }
 
-    public void renderInventoryBlock(
-            final Block block, final int metadata, final int modelId, final RenderBlocks renderer) {}
+    public void renderInventoryBlock(final Block block, final int metadata, final int modelId,
+            final RenderBlocks renderer) {}
 
     public double[] rotateLeft() {
         return new double[8];
     }
 
-    public boolean renderWorldBlock(
-            final IBlockAccess world,
-            final int x,
-            final int y,
-            final int z,
-            final Block block,
-            final int modelId,
-            final RenderBlocks renderer) {
+    public boolean renderWorldBlock(final IBlockAccess world, final int x, final int y, final int z, final Block block,
+            final int modelId, final RenderBlocks renderer) {
         final Tessellator tessellator = Tessellator.instance;
         final Block bed = world.getBlock(x, y, z);
         final int dir = bed.getBedDirection(world, x, y, z);
@@ -183,21 +179,15 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler {
         return true;
     }
 
-    public IIcon getBlockIcon(
-            final Block block,
-            final IBlockAccess p_147793_2_,
-            final int p_147793_3_,
-            final int p_147793_4_,
-            final int p_147793_5_,
-            final int p_147793_6_) {
+    public IIcon getBlockIcon(final Block block, final IBlockAccess p_147793_2_, final int p_147793_3_,
+            final int p_147793_4_, final int p_147793_5_, final int p_147793_6_) {
         return this.getIconSafe(block.getIcon(p_147793_2_, p_147793_3_, p_147793_4_, p_147793_5_, p_147793_6_));
     }
 
     public IIcon getIconSafe(IIcon icon) {
         if (icon == null) {
-            icon = (IIcon) ((TextureMap)
-                            Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture))
-                    .getAtlasSprite("missingno");
+            icon = (IIcon) ((TextureMap) Minecraft.getMinecraft().getTextureManager()
+                    .getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno");
         }
         return icon;
     }
@@ -211,20 +201,14 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler {
     }
 
     public final class TextureSquare {
+
         public Position node0;
         public Position node1;
         public Position node2;
         public Position node3;
 
-        TextureSquare(
-                final double node0X,
-                final double node0Y,
-                final double node1X,
-                final double node1Y,
-                final double node2X,
-                final double node2Y,
-                final double node3X,
-                final double node3Y) {
+        TextureSquare(final double node0X, final double node0Y, final double node1X, final double node1Y,
+                final double node2X, final double node2Y, final double node3X, final double node3Y) {
             this.node0 = new Position(node0X, node0Y);
             this.node1 = new Position(node1X, node1Y);
             this.node2 = new Position(node2X, node2Y);
@@ -286,6 +270,7 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler {
         }
 
         public final class Position {
+
             public double x;
             public double y;
 

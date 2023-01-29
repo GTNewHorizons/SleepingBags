@@ -1,6 +1,7 @@
 package ru.npo6ka.sleepingbag.items;
 
 import java.util.*;
+
 import net.minecraft.block.*;
 import net.minecraft.creativetab.*;
 import net.minecraft.entity.monster.*;
@@ -8,11 +9,12 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+
 import ru.npo6ka.sleepingbag.*;
 import ru.npo6ka.sleepingbag.blocks.*;
 
 public class ItemSleepingBag extends Item {
-    private static final String __OBFID = "CL_00001771";
+
     public static final String TAG_POSITION = "player_pos_sleaping_bag";
     public static final int[][] field_149981_a;
 
@@ -21,33 +23,24 @@ public class ItemSleepingBag extends Item {
     }
 
     public ItemStack onItemRightClick(final ItemStack itemstack, final World world, final EntityPlayer entityplayer) {
-        this.setSleepingBag(itemstack, entityplayer, world, (int) entityplayer.posX, (int) entityplayer.posY, (int)
-                entityplayer.posZ);
+        this.setSleepingBag(
+                itemstack,
+                entityplayer,
+                world,
+                (int) entityplayer.posX,
+                (int) entityplayer.posY,
+                (int) entityplayer.posZ);
         return itemstack;
     }
 
-    public boolean onItemUse(
-            final ItemStack itemstack,
-            final EntityPlayer entityplayer,
-            final World world,
-            final int x,
-            int y,
-            final int z,
-            final int side,
-            final float px,
-            final float py,
-            final float pz) {
+    public boolean onItemUse(final ItemStack itemstack, final EntityPlayer entityplayer, final World world, final int x,
+            int y, final int z, final int side, final float px, final float py, final float pz) {
         ++y;
         return side == 1 && this.setSleepingBag(itemstack, entityplayer, world, x, y, z);
     }
 
-    public boolean setSleepingBag(
-            final ItemStack itemstack,
-            final EntityPlayer entityplayer,
-            final World world,
-            final int x,
-            final int y,
-            final int z) {
+    public boolean setSleepingBag(final ItemStack itemstack, final EntityPlayer entityplayer, final World world,
+            final int x, final int y, final int z) {
         if (world.isRemote) {
             return true;
         }
@@ -94,20 +87,13 @@ public class ItemSleepingBag extends Item {
                 && this.setBlockSleepingBag(itemstack, entityplayer, world, side, x, y, z, dir, offsetX, offsetZ);
     }
 
-    public boolean canPlayerSetBad(
-            final ItemStack itemstack,
-            final EntityPlayer entityplayer,
-            final World world,
-            final int side,
-            final int x,
-            final int y,
-            final int z) {
+    public boolean canPlayerSetBad(final ItemStack itemstack, final EntityPlayer entityplayer, final World world,
+            final int side, final int x, final int y, final int z) {
         return entityplayer.canPlayerEdit(x, y, z, side, itemstack) && world.isAirBlock(x, y, z);
     }
 
     public boolean canPlayerSleep(final World world, final EntityPlayer entityplayer, int x, final int y, int z) {
-        if (entityplayer.isPlayerSleeping()
-                || !entityplayer.isEntityAlive()
+        if (entityplayer.isPlayerSleeping() || !entityplayer.isEntityAlive()
                 || !entityplayer.worldObj.provider.isSurfaceWorld()) {
             return false;
         }
@@ -128,15 +114,15 @@ public class ItemSleepingBag extends Item {
             x += ItemSleepingBag.field_149981_a[j1][0];
             z += ItemSleepingBag.field_149981_a[j1][1];
         }
-        if (Math.abs(entityplayer.posX - x) > 3.0
-                || Math.abs(entityplayer.posY - y) > 2.0
+        if (Math.abs(entityplayer.posX - x) > 3.0 || Math.abs(entityplayer.posY - y) > 2.0
                 || Math.abs(entityplayer.posZ - z) > 3.0) {
             return false;
         }
         final double d0 = 9.0;
         final double d2 = 5.0;
         final List list = entityplayer.worldObj.getEntitiesWithinAABB(
-                (Class) EntityMob.class, AxisAlignedBB.getBoundingBox(x - d0, y - d2, z - d0, x + d0, y + d2, z + d0));
+                (Class) EntityMob.class,
+                AxisAlignedBB.getBoundingBox(x - d0, y - d2, z - d0, x + d0, y + d2, z + d0));
         if (!list.isEmpty()) {
             entityplayer.addChatComponentMessage(
                     (IChatComponent) new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
@@ -145,16 +131,8 @@ public class ItemSleepingBag extends Item {
         return true;
     }
 
-    public boolean setBlockSleepingBag(
-            final ItemStack itemstack,
-            final EntityPlayer entityplayer,
-            final World world,
-            final int side,
-            final int x,
-            final int y,
-            final int z,
-            int dir,
-            final Integer offsetX,
+    public boolean setBlockSleepingBag(final ItemStack itemstack, final EntityPlayer entityplayer, final World world,
+            final int side, final int x, final int y, final int z, int dir, final Integer offsetX,
             final Integer offsetZ) {
         final BlockSleepingBag blockbed = ItemsRegister.sleepingBagBlock;
         if (offsetZ == 1) {
@@ -195,6 +173,6 @@ public class ItemSleepingBag extends Item {
     }
 
     static {
-        field_149981_a = new int[][] {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
+        field_149981_a = new int[][] { { 0, 1 }, { -1, 0 }, { 0, -1 }, { 1, 0 } };
     }
 }

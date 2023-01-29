@@ -1,8 +1,7 @@
 package ru.npo6ka.sleepingbag.blocks;
 
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.relauncher.*;
 import java.util.*;
+
 import net.minecraft.block.*;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.entity.*;
@@ -11,9 +10,13 @@ import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.*;
+
 import ru.npo6ka.sleepingbag.*;
+import cpw.mods.fml.common.*;
+import cpw.mods.fml.relauncher.*;
 
 public class BlockSleepingBag extends BlockBed {
+
     @SideOnly(Side.CLIENT)
     private IIcon[] field_149980_b;
 
@@ -37,24 +40,16 @@ public class BlockSleepingBag extends BlockBed {
         this.renderType = type;
     }
 
-    public ChunkCoordinates getBedSpawnPosition(
-            final IBlockAccess world, final int x, final int y, final int z, final EntityPlayer player) {
+    public ChunkCoordinates getBedSpawnPosition(final IBlockAccess world, final int x, final int y, final int z,
+            final EntityPlayer player) {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER && world instanceof World) {
             return ExtendedPlayer.get(player).getLastCoord();
         }
         return null;
     }
 
-    public boolean onBlockActivated(
-            final World world,
-            int x,
-            final int y,
-            int z,
-            final EntityPlayer player,
-            final int p_149727_6_,
-            final float p_149727_7_,
-            final float p_149727_8_,
-            final float p_149727_9_) {
+    public boolean onBlockActivated(final World world, int x, final int y, int z, final EntityPlayer player,
+            final int p_149727_6_, final float p_149727_7_, final float p_149727_8_, final float p_149727_9_) {
         if (world.isRemote) {
             return true;
         }
@@ -83,7 +78,13 @@ public class BlockSleepingBag extends BlockBed {
                 d4 = (d4 + z + 0.5) / 2.0;
             }
             world.newExplosion(
-                    (Entity) null, (double) (x + 0.5f), (double) (y + 0.5f), (double) (z + 0.5f), 5.0f, true, true);
+                    (Entity) null,
+                    (double) (x + 0.5f),
+                    (double) (y + 0.5f),
+                    (double) (z + 0.5f),
+                    5.0f,
+                    true,
+                    true);
             return true;
         }
         if (func_149976_c(i1)) {
@@ -144,22 +145,16 @@ public class BlockSleepingBag extends BlockBed {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(final IIconRegister p_149651_1_) {
-        this.field_149983_N = new IIcon[] {
-            p_149651_1_.registerIcon(this.getTextureName() + "_feet_top"),
-            p_149651_1_.registerIcon(this.getTextureName() + "_head_top")
-        };
-        this.field_149980_b = new IIcon[] {
-            p_149651_1_.registerIcon(this.getTextureName() + "_feet_end"),
-            p_149651_1_.registerIcon(this.getTextureName() + "_head_end")
-        };
-        this.field_149982_M = new IIcon[] {
-            p_149651_1_.registerIcon(this.getTextureName() + "_feet_side"),
-            p_149651_1_.registerIcon(this.getTextureName() + "_head_side")
-        };
+        this.field_149983_N = new IIcon[] { p_149651_1_.registerIcon(this.getTextureName() + "_feet_top"),
+                p_149651_1_.registerIcon(this.getTextureName() + "_head_top") };
+        this.field_149980_b = new IIcon[] { p_149651_1_.registerIcon(this.getTextureName() + "_feet_end"),
+                p_149651_1_.registerIcon(this.getTextureName() + "_head_end") };
+        this.field_149982_M = new IIcon[] { p_149651_1_.registerIcon(this.getTextureName() + "_feet_side"),
+                p_149651_1_.registerIcon(this.getTextureName() + "_head_side") };
     }
 
-    public void setBlockBoundsBasedOnState(
-            final IBlockAccess p_149719_1_, final int p_149719_2_, final int p_149719_3_, final int p_149719_4_) {
+    public void setBlockBoundsBasedOnState(final IBlockAccess p_149719_1_, final int p_149719_2_, final int p_149719_3_,
+            final int p_149719_4_) {
         this.func_149978_e();
     }
 
@@ -167,18 +162,13 @@ public class BlockSleepingBag extends BlockBed {
         this.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 0.25f, 1.0f);
     }
 
-    public boolean isBed(
-            final IBlockAccess world, final int x, final int y, final int z, final EntityLivingBase player) {
+    public boolean isBed(final IBlockAccess world, final int x, final int y, final int z,
+            final EntityLivingBase player) {
         return this == ItemsRegister.sleepingBagBlock;
     }
 
-    public void setBedOccupied(
-            final IBlockAccess world,
-            final int x,
-            final int y,
-            final int z,
-            final EntityPlayer player,
-            final boolean occupied) {
+    public void setBedOccupied(final IBlockAccess world, final int x, final int y, final int z,
+            final EntityPlayer player, final boolean occupied) {
         final Block bad = world.getBlock(x, y, z);
         if (bad == ItemsRegister.sleepingBagBlock) {
             ExtendedPlayer.get(player).setWakeUpFlag(true);

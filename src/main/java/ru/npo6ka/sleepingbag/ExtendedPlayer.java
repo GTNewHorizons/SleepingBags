@@ -8,6 +8,7 @@ import net.minecraft.world.*;
 import net.minecraftforge.common.*;
 
 public class ExtendedPlayer implements IExtendedEntityProperties {
+
     public static final String EXT_PROP_NAME = "ExtendedPlayer";
     private ChunkCoordinates lastCoord;
     private ChunkCoordinates lastSpawnCoord;

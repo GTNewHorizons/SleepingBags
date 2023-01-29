@@ -3,6 +3,7 @@ package ru.npo6ka.sleepingbag;
 import java.util.*;
 
 public final class Utils {
+
     public static final Random RAND;
 
     private Utils() {}
