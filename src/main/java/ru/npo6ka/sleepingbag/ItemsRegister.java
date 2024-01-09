@@ -5,9 +5,9 @@ import net.minecraft.creativetab.*;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
 
+import cpw.mods.fml.common.registry.*;
 import ru.npo6ka.sleepingbag.blocks.*;
 import ru.npo6ka.sleepingbag.items.*;
-import cpw.mods.fml.common.registry.*;
 
 public final class ItemsRegister {
 

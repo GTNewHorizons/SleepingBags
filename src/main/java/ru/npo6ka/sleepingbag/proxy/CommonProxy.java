@@ -2,8 +2,8 @@ package ru.npo6ka.sleepingbag.proxy;
 
 import net.minecraftforge.common.*;
 
-import ru.npo6ka.sleepingbag.*;
 import cpw.mods.fml.common.*;
+import ru.npo6ka.sleepingbag.*;
 
 public class CommonProxy {
 

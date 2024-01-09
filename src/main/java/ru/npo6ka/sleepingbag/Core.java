@@ -2,9 +2,9 @@ package ru.npo6ka.sleepingbag;
 
 import org.apache.logging.log4j.*;
 
-import ru.npo6ka.sleepingbag.proxy.*;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
+import ru.npo6ka.sleepingbag.proxy.*;
 
 @Mod(modid = Core.MODID, version = Core.VERSION)
 public class Core {
