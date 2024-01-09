@@ -1,7 +1,7 @@
 package ru.npo6ka.sleepingbag.proxy;
 
-import ru.npo6ka.sleepingbag.*;
 import cpw.mods.fml.client.registry.*;
+import ru.npo6ka.sleepingbag.*;
 
 public class ClientProxy extends CommonProxy {
 

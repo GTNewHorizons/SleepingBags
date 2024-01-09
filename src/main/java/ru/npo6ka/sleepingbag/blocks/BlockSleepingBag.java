@@ -11,9 +11,9 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.*;
 
-import ru.npo6ka.sleepingbag.*;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.relauncher.*;
+import ru.npo6ka.sleepingbag.*;
 
 public class BlockSleepingBag extends BlockBed {
 
