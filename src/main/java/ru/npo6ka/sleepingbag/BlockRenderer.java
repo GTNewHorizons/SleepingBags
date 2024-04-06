@@ -1,31 +1,26 @@
 package ru.npo6ka.sleepingbag;
 
-import net.minecraft.block.*;
-import net.minecraft.client.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.util.Direction;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 
-import cpw.mods.fml.client.registry.*;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class BlockRenderer implements ISimpleBlockRenderingHandler {
 
     private final int renderId;
-    private final Tessellator tes;
-    private final double renderMinX = 0.0;
-    private final double renderMaxX = 1.0;
-    private final double renderMinY = 0.0;
-    private final double renderMaxY = 0.25;
-    private final double renderMinZ = 0.0;
-    private final double renderMaxZ = 1.0;
     public boolean flipTexture;
     public boolean renderAllFaces;
     RenderPlayer player;
 
     public BlockRenderer() {
-        this.tes = Tessellator.instance;
         this.renderId = RenderingRegistry.getNextAvailableRenderId();
     }
 
@@ -157,7 +152,7 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler {
             tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y + 1, z));
             tessellator.setColorOpaque_F(f4, f4, f4);
             square = new TextureSquare(this.getBlockIcon(block, world, x, y, z, 5));
-            if (Direction.directions[dir] == "SOUTH") {
+            if (Direction.directions[dir].equals("SOUTH")) {
                 square.rotateDouble();
             } else if (dir == 1) {
                 square.invertHorizontal();
@@ -186,7 +181,7 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler {
 
     public IIcon getIconSafe(IIcon icon) {
         if (icon == null) {
-            icon = (IIcon) ((TextureMap) Minecraft.getMinecraft().getTextureManager()
+            icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager()
                     .getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno");
         }
         return icon;

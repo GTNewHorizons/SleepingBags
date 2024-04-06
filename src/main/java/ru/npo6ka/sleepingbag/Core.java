@@ -1,16 +1,20 @@
 package ru.npo6ka.sleepingbag;
 
-import org.apache.logging.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.common.event.*;
-import ru.npo6ka.sleepingbag.proxy.*;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import ru.npo6ka.sleepingbag.proxy.CommonProxy;
 
 @Mod(modid = Core.MODID, version = Core.VERSION)
 public class Core {
 
-    public static final String MODID = "GRADLETOKEN_MODID";
-    public static final String VERSION = "GRADLETOKEN_VERSION";
+    public static final String MODID = "sleepingbag";
+    public static final String VERSION = Tags.VERSION;
     public static final Logger LOGGER;
 
     @Mod.Instance

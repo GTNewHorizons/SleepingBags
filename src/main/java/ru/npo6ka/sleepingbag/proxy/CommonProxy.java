@@ -1,9 +1,10 @@
 package ru.npo6ka.sleepingbag.proxy;
 
-import net.minecraftforge.common.*;
+import net.minecraftforge.common.MinecraftForge;
 
-import cpw.mods.fml.common.*;
-import ru.npo6ka.sleepingbag.*;
+import cpw.mods.fml.common.FMLCommonHandler;
+import ru.npo6ka.sleepingbag.EventHandler;
+import ru.npo6ka.sleepingbag.ItemsRegister;
 
 public class CommonProxy {
 
@@ -13,8 +14,8 @@ public class CommonProxy {
 
     public void init() {
         final EventHandler ev = new EventHandler();
-        MinecraftForge.EVENT_BUS.register((Object) ev);
-        FMLCommonHandler.instance().bus().register((Object) ev);
+        MinecraftForge.EVENT_BUS.register(ev);
+        FMLCommonHandler.instance().bus().register(ev);
     }
 
     public void postInit() {}

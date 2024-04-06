@@ -1,21 +1,30 @@
 package ru.npo6ka.sleepingbag.items;
 
-import java.util.*;
+import java.util.List;
 
-import net.minecraft.block.*;
-import net.minecraft.creativetab.*;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
-import ru.npo6ka.sleepingbag.*;
-import ru.npo6ka.sleepingbag.blocks.*;
+import ru.npo6ka.sleepingbag.ExtendedPlayer;
+import ru.npo6ka.sleepingbag.ItemsRegister;
+import ru.npo6ka.sleepingbag.blocks.BlockSleepingBag;
 
 public class ItemSleepingBag extends Item {
 
     public static final String TAG_POSITION = "player_pos_sleaping_bag";
+
+    /**
+     * bedDirections
+     */
     public static final int[][] field_149981_a;
 
     public ItemSleepingBag() {
@@ -48,7 +57,7 @@ public class ItemSleepingBag extends Item {
         if (!this.canPlayerSetBad(itemstack, entityplayer, world, side, x, y, z)) {
             return false;
         }
-        if (!World.doesBlockHaveSolidTopSurface((IBlockAccess) world, x, y - 1, z)) {
+        if (!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z)) {
             return false;
         }
         Integer offsetX = 0;
@@ -98,8 +107,7 @@ public class ItemSleepingBag extends Item {
             return false;
         }
         if (entityplayer.worldObj.isDaytime()) {
-            entityplayer.addChatComponentMessage(
-                    (IChatComponent) new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
+            entityplayer.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep"));
             return false;
         }
         final int i1 = world.getBlockMetadata(x, y, z);
@@ -107,9 +115,7 @@ public class ItemSleepingBag extends Item {
         if (!(bed instanceof BlockSleepingBag)) {
             return false;
         }
-        final BlockSleepingBag blockSleepingBag = (BlockSleepingBag) bed;
         if (!BlockSleepingBag.isBlockHeadOfBed(i1)) {
-            final BlockSleepingBag blockSleepingBag2 = (BlockSleepingBag) bed;
             final int j1 = BlockSleepingBag.getDirection(i1);
             x += ItemSleepingBag.field_149981_a[j1][0];
             z += ItemSleepingBag.field_149981_a[j1][1];
@@ -120,12 +126,11 @@ public class ItemSleepingBag extends Item {
         }
         final double d0 = 9.0;
         final double d2 = 5.0;
-        final List list = entityplayer.worldObj.getEntitiesWithinAABB(
-                (Class) EntityMob.class,
+        final List<EntityMob> list = entityplayer.worldObj.getEntitiesWithinAABB(
+                EntityMob.class,
                 AxisAlignedBB.getBoundingBox(x - d0, y - d2, z - d0, x + d0, y + d2, z + d0));
         if (!list.isEmpty()) {
-            entityplayer.addChatComponentMessage(
-                    (IChatComponent) new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
+            entityplayer.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe"));
             return false;
         }
         return true;
@@ -144,9 +149,9 @@ public class ItemSleepingBag extends Item {
         } else if (offsetX == 1) {
             dir = 3;
         }
-        world.setBlock(x, y, z, (Block) blockbed, dir, 3);
+        world.setBlock(x, y, z, blockbed, dir, 3);
         if (world.getBlock(x, y, z) == blockbed) {
-            world.setBlock(x + offsetX, y, z + offsetZ, (Block) blockbed, dir + 8, 3);
+            world.setBlock(x + offsetX, y, z + offsetZ, blockbed, dir + 8, 3);
         }
         if (!this.canPlayerSleep(world, entityplayer, x, y, z)) {
             if (world.getBlock(x, y, z) == blockbed) {
