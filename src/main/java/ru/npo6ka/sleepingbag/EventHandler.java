@@ -29,8 +29,8 @@ public class EventHandler {
 
     @SubscribeEvent
     public void onEntityConstruct(final EntityEvent.EntityConstructing e) {
-        if (e.entity instanceof EntityPlayer) {
-            ExtendedPlayer.register((EntityPlayer) e.entity);
+        if (e.entity instanceof EntityPlayer player) {
+            ExtendedPlayer.register(player);
         }
     }
 

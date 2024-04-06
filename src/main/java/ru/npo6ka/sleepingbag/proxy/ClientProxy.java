@@ -14,7 +14,7 @@ public class ClientProxy extends CommonProxy {
     public void init() {
         super.init();
         final BlockRenderer blockRenderer = new BlockRenderer();
-        RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler) blockRenderer);
+        RenderingRegistry.registerBlockHandler(blockRenderer);
         ItemsRegister.sleepingBagBlock.setRenderId(blockRenderer.getRenderId());
     }
 

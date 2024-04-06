@@ -100,8 +100,7 @@ public class BlockSleepingBag extends BlockBed {
                 }
             }
             if (entityplayer1 != null) {
-                player.addChatComponentMessage(
-                        (IChatComponent) new ChatComponentTranslation("tile.bed.occupied", new Object[0]));
+                player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied"));
                 return true;
             }
             func_149979_a(world, x, y, z, false);
@@ -112,11 +111,9 @@ public class BlockSleepingBag extends BlockBed {
             return true;
         }
         if (enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW) {
-            player.addChatComponentMessage(
-                    (IChatComponent) new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
+            player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep"));
         } else if (enumstatus == EntityPlayer.EnumStatus.NOT_SAFE) {
-            player.addChatComponentMessage(
-                    (IChatComponent) new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
+            player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe"));
         }
         return true;
     }

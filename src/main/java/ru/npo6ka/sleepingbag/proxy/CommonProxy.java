@@ -13,8 +13,8 @@ public class CommonProxy {
 
     public void init() {
         final EventHandler ev = new EventHandler();
-        MinecraftForge.EVENT_BUS.register((Object) ev);
-        FMLCommonHandler.instance().bus().register((Object) ev);
+        MinecraftForge.EVENT_BUS.register(ev);
+        FMLCommonHandler.instance().bus().register(ev);
     }
 
     public void postInit() {}

@@ -48,7 +48,7 @@ public class ItemSleepingBag extends Item {
         if (!this.canPlayerSetBad(itemstack, entityplayer, world, side, x, y, z)) {
             return false;
         }
-        if (!World.doesBlockHaveSolidTopSurface((IBlockAccess) world, x, y - 1, z)) {
+        if (!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z)) {
             return false;
         }
         Integer offsetX = 0;
@@ -98,8 +98,7 @@ public class ItemSleepingBag extends Item {
             return false;
         }
         if (entityplayer.worldObj.isDaytime()) {
-            entityplayer.addChatComponentMessage(
-                    (IChatComponent) new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
+            entityplayer.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep"));
             return false;
         }
         final int i1 = world.getBlockMetadata(x, y, z);
@@ -120,12 +119,11 @@ public class ItemSleepingBag extends Item {
         }
         final double d0 = 9.0;
         final double d2 = 5.0;
-        final List list = entityplayer.worldObj.getEntitiesWithinAABB(
-                (Class) EntityMob.class,
+        final List<EntityMob> list = entityplayer.worldObj.getEntitiesWithinAABB(
+                EntityMob.class,
                 AxisAlignedBB.getBoundingBox(x - d0, y - d2, z - d0, x + d0, y + d2, z + d0));
         if (!list.isEmpty()) {
-            entityplayer.addChatComponentMessage(
-                    (IChatComponent) new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
+            entityplayer.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe"));
             return false;
         }
         return true;
@@ -144,9 +142,9 @@ public class ItemSleepingBag extends Item {
         } else if (offsetX == 1) {
             dir = 3;
         }
-        world.setBlock(x, y, z, (Block) blockbed, dir, 3);
+        world.setBlock(x, y, z, blockbed, dir, 3);
         if (world.getBlock(x, y, z) == blockbed) {
-            world.setBlock(x + offsetX, y, z + offsetZ, (Block) blockbed, dir + 8, 3);
+            world.setBlock(x + offsetX, y, z + offsetZ, blockbed, dir + 8, 3);
         }
         if (!this.canPlayerSleep(world, entityplayer, x, y, z)) {
             if (world.getBlock(x, y, z) == blockbed) {

@@ -186,7 +186,7 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler {
 
     public IIcon getIconSafe(IIcon icon) {
         if (icon == null) {
-            icon = (IIcon) ((TextureMap) Minecraft.getMinecraft().getTextureManager()
+            icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager()
                     .getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno");
         }
         return icon;
