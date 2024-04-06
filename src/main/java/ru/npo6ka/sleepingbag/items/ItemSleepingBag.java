@@ -106,9 +106,7 @@ public class ItemSleepingBag extends Item {
         if (!(bed instanceof BlockSleepingBag)) {
             return false;
         }
-        final BlockSleepingBag blockSleepingBag = (BlockSleepingBag) bed;
         if (!BlockSleepingBag.isBlockHeadOfBed(i1)) {
-            final BlockSleepingBag blockSleepingBag2 = (BlockSleepingBag) bed;
             final int j1 = BlockSleepingBag.getDirection(i1);
             x += ItemSleepingBag.field_149981_a[j1][0];
             z += ItemSleepingBag.field_149981_a[j1][1];

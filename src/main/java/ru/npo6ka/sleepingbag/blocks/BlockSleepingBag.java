@@ -79,9 +79,9 @@ public class BlockSleepingBag extends BlockBed {
             }
             world.newExplosion(
                     (Entity) null,
-                    (double) (x + 0.5f),
-                    (double) (y + 0.5f),
-                    (double) (z + 0.5f),
+                    (double) (x + 0.5),
+                    (double) (y + 0.5),
+                    (double) (z + 0.5),
                     5.0f,
                     true,
                     true);

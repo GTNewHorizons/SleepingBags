@@ -13,19 +13,11 @@ import cpw.mods.fml.client.registry.*;
 public class BlockRenderer implements ISimpleBlockRenderingHandler {
 
     private final int renderId;
-    private final Tessellator tes;
-    private final double renderMinX = 0.0;
-    private final double renderMaxX = 1.0;
-    private final double renderMinY = 0.0;
-    private final double renderMaxY = 0.25;
-    private final double renderMinZ = 0.0;
-    private final double renderMaxZ = 1.0;
     public boolean flipTexture;
     public boolean renderAllFaces;
     RenderPlayer player;
 
     public BlockRenderer() {
-        this.tes = Tessellator.instance;
         this.renderId = RenderingRegistry.getNextAvailableRenderId();
     }
 
