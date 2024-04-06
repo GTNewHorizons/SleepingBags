@@ -17,15 +17,9 @@ import ru.npo6ka.sleepingbag.*;
 
 public class BlockSleepingBag extends BlockBed {
 
-    @SideOnly(Side.CLIENT)
-    private IIcon[] field_149980_b;
-
-    @SideOnly(Side.CLIENT)
-    private IIcon[] field_149982_M;
-
-    @SideOnly(Side.CLIENT)
-    private IIcon[] field_149983_N;
-
+    private IIcon[] iconEnd;
+    private IIcon[] iconSide;
+    private IIcon[] iconTop;
     private int renderType;
 
     public BlockSleepingBag() {
@@ -49,7 +43,7 @@ public class BlockSleepingBag extends BlockBed {
     }
 
     public boolean onBlockActivated(final World world, int x, final int y, int z, final EntityPlayer player,
-            final int p_149727_6_, final float p_149727_7_, final float p_149727_8_, final float p_149727_9_) {
+            final int side, final float subX, final float subY, final float subZ) {
         if (world.isRemote) {
             return true;
         }
@@ -87,7 +81,7 @@ public class BlockSleepingBag extends BlockBed {
                     true);
             return true;
         }
-        if (func_149976_c(i1)) {
+        if (func_149976_c(i1)) { // isBedOccupied
             EntityPlayer entityplayer1 = null;
             final List<EntityPlayer> pl_list = world.playerEntities;
             for (final EntityPlayer entityplayer2 : pl_list) {
@@ -103,11 +97,11 @@ public class BlockSleepingBag extends BlockBed {
                 player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied"));
                 return true;
             }
-            func_149979_a(world, x, y, z, false);
+            func_149979_a(world, x, y, z, false); // setBedOccupied
         }
         final EntityPlayer.EnumStatus enumstatus = player.sleepInBedAt(x, y, z);
         if (enumstatus == EntityPlayer.EnumStatus.OK) {
-            func_149979_a(world, x, y, z, true);
+            func_149979_a(world, x, y, z, true); // setBedOccupied
             return true;
         }
         if (enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW) {
@@ -118,44 +112,41 @@ public class BlockSleepingBag extends BlockBed {
         return true;
     }
 
-    public Item getItemDropped(final int p_149650_1_, final Random p_149650_2_, final int p_149650_3_) {
-        return isBlockHeadOfBed(p_149650_1_) ? Item.getItemById(0) : ItemsRegister.sleepingBagItem;
+    public Item getItemDropped(final int meta, final Random random, final int fortune) {
+        return isBlockHeadOfBed(meta) ? Item.getItemById(0) : ItemsRegister.sleepingBagItem;
     }
 
-    @SideOnly(Side.CLIENT)
-    public Item getItem(final World p_149694_1_, final int p_149694_2_, final int p_149694_3_, final int p_149694_4_) {
+    public Item getItem(final World worldIn, final int x, final int y, final int z) {
         return ItemsRegister.sleepingBagItem;
     }
 
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int p_149691_1_, final int p_149691_2_) {
-        if (p_149691_1_ == 0) {
-            p_149691_1_ = 1;
+    public IIcon getIcon(int side, final int meta) {
+        if (side == 0) {
+            side = 1;
         }
-        final int k = getDirection(p_149691_2_);
-        final int l = Direction.bedDirection[k][p_149691_1_];
-        final int i1 = isBlockHeadOfBed(p_149691_2_) ? 1 : 0;
+        final int k = getDirection(meta);
+        final int l = Direction.bedDirection[k][side];
+        final int i1 = isBlockHeadOfBed(meta) ? 1 : 0;
         return ((i1 != 1 || l != 2) && (i1 != 0 || l != 3))
-                ? ((l != 5 && l != 4) ? this.field_149983_N[i1] : this.field_149982_M[i1])
-                : this.field_149980_b[i1];
+                ? ((l != 5 && l != 4) ? this.iconTop[i1] : this.iconSide[i1])
+                : this.iconEnd[i1];
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(final IIconRegister p_149651_1_) {
-        this.field_149983_N = new IIcon[] { p_149651_1_.registerIcon(this.getTextureName() + "_feet_top"),
-                p_149651_1_.registerIcon(this.getTextureName() + "_head_top") };
-        this.field_149980_b = new IIcon[] { p_149651_1_.registerIcon(this.getTextureName() + "_feet_end"),
-                p_149651_1_.registerIcon(this.getTextureName() + "_head_end") };
-        this.field_149982_M = new IIcon[] { p_149651_1_.registerIcon(this.getTextureName() + "_feet_side"),
-                p_149651_1_.registerIcon(this.getTextureName() + "_head_side") };
+    public void registerBlockIcons(final IIconRegister reg) {
+        this.iconTop = new IIcon[] { reg.registerIcon(this.getTextureName() + "_feet_top"),
+                reg.registerIcon(this.getTextureName() + "_head_top") };
+        this.iconEnd = new IIcon[] { reg.registerIcon(this.getTextureName() + "_feet_end"),
+                reg.registerIcon(this.getTextureName() + "_head_end") };
+        this.iconSide = new IIcon[] { reg.registerIcon(this.getTextureName() + "_feet_side"),
+                reg.registerIcon(this.getTextureName() + "_head_side") };
     }
 
-    public void setBlockBoundsBasedOnState(final IBlockAccess p_149719_1_, final int p_149719_2_, final int p_149719_3_,
-            final int p_149719_4_) {
-        this.func_149978_e();
+    public void setBlockBoundsBasedOnState(final IBlockAccess worldIn, final int x, final int y, final int z) {
+        this.setBedBounds();
     }
 
-    private void func_149978_e() {
+    private void setBedBounds() {
         this.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 0.25f, 1.0f);
     }
 

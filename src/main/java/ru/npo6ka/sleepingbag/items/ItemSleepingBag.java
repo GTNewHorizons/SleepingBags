@@ -16,6 +16,10 @@ import ru.npo6ka.sleepingbag.blocks.*;
 public class ItemSleepingBag extends Item {
 
     public static final String TAG_POSITION = "player_pos_sleaping_bag";
+
+    /**
+     * bedDirections
+     */
     public static final int[][] field_149981_a;
 
     public ItemSleepingBag() {
