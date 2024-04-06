@@ -9,8 +9,8 @@ import ru.npo6ka.sleepingbag.proxy.*;
 @Mod(modid = Core.MODID, version = Core.VERSION)
 public class Core {
 
-    public static final String MODID = "GRADLETOKEN_MODID";
-    public static final String VERSION = "GRADLETOKEN_VERSION";
+    public static final String MODID = "sleepingbag";
+    public static final String VERSION = Tags.VERSION;
     public static final Logger LOGGER;
 
     @Mod.Instance
