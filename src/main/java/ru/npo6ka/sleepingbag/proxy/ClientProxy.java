@@ -1,7 +1,8 @@
 package ru.npo6ka.sleepingbag.proxy;
 
-import cpw.mods.fml.client.registry.*;
-import ru.npo6ka.sleepingbag.*;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import ru.npo6ka.sleepingbag.BlockRenderer;
+import ru.npo6ka.sleepingbag.ItemsRegister;
 
 public class ClientProxy extends CommonProxy {
 

@@ -1,6 +1,6 @@
 package ru.npo6ka.sleepingbag;
 
-import java.util.*;
+import java.util.Random;
 
 public final class Utils {
 

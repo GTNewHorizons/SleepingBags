@@ -1,20 +1,21 @@
 package ru.npo6ka.sleepingbag;
 
-import java.util.*;
+import java.util.List;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraftforge.client.event.*;
-import net.minecraftforge.event.entity.*;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.event.entity.EntityEvent;
 
-import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.common.eventhandler.*;
-import cpw.mods.fml.common.gameevent.*;
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EventHandler {
 

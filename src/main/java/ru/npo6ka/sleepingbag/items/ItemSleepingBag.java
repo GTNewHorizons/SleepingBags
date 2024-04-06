@@ -1,17 +1,22 @@
 package ru.npo6ka.sleepingbag.items;
 
-import java.util.*;
+import java.util.List;
 
-import net.minecraft.block.*;
-import net.minecraft.creativetab.*;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
-import ru.npo6ka.sleepingbag.*;
-import ru.npo6ka.sleepingbag.blocks.*;
+import ru.npo6ka.sleepingbag.ExtendedPlayer;
+import ru.npo6ka.sleepingbag.ItemsRegister;
+import ru.npo6ka.sleepingbag.blocks.BlockSleepingBag;
 
 public class ItemSleepingBag extends Item {
 
