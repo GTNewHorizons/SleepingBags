@@ -172,7 +172,11 @@ public class ItemSleepingBag extends Item {
             final ExtendedPlayer ep = ExtendedPlayer.get(entity);
             ep.setSleepingFlag(1);
             ep.setBedCoord(new ChunkCoordinates(x, y, z));
-            ep.setLastCoord(new ChunkCoordinates((int) entity.posX, (int) entity.posY, (int) entity.posZ));
+            ep.setLastCoord(
+                    new ChunkCoordinates(
+                            (int) Math.floor(entity.posX),
+                            (int) entity.posY,
+                            (int) Math.floor(entity.posZ)));
             ep.setlastSpawnCoord(entity.getBedLocation(entity.worldObj.provider.dimensionId));
         }
     }
